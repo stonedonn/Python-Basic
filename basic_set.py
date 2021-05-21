@@ -31,7 +31,53 @@ def define_set():
 
     words = set(lst)
     print(words, len(words))
+def set_methods():
+    """
+    셋의 메서드
+    """
+    print("전체집합:",numbers)
+    #요소의 추가
+    numbers.add(10) # 10요소 추가
+    print(numbers)
+    evens.add(10)
+    print("짝수 집합:", evens)
+    evens.add(4) # SET는 중복 허용 x
+    print("짝수 집합: ", evens)
+
+    #삭제 : discard, remove
+    evens.discard(4)
+    print("짝수 집합:",evens)
+    evens.discard(4) # discard -> 없는 요소를 삭제해도 에러 발생 안함
+    #evens.remove(4) #remove -> 없는 요소 삭제 -> KeyError 발생
+
+    # 집합 업데이트
+    evens.update({2, 4, 6}) # 없는 것만 추가됨
+    print("짝수 집합:",evens)
+
+def set_oper():
+    """
+    집합 연산
+        교집합, 합집합, 차집합
+    판별 연산
+        모집합 여부, 부분집합 여부
+    """
+    #짝수집합 합집합 홀수집합 == 전체집합
+    print(evens.union(odds) == numbers)
+    print("짝수 합집합 홀수:",evens | odds == numbers)
+
+    #모집합, 부분집합 판별
+    print("전체집합이 짝수 집합의 모집합?", numbers.issuperset(evens))
+    print("홀수집합이 전체집합의 부분집합?",odds.issubset(numbers))
+
+    #교집합
+    print("짝수집홥 교집합 3의 배수 집합합", evens.intersection(mthree))
+    print(mthree & odds == {3, 9})
+
+    #차집합
+    print("전체집합 차집합 짝수 집합:",numbers.difference(evens))
+    print("전체집합 차집합 짝수집합 -> 홀수집합?",numbers - evens == odds)
 
 if __name__ == "__main__":
-    define_set()
-
+    # define_set()
+    # set_methods()
+    set_oper()
