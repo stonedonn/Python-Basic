@@ -100,7 +100,89 @@ def list_oper():
     print("MAX:", max(lst)) # 최댓값
     print("AVERAGE:", sum(lst) / len(lst)) # 평균
 
+def list_methods():
+    """
+    리스트 메서드들
+    """
+    lst = [10, 2, 22, 9, 8, 33, 4, 12]
+    print("원본: ", lst)
+    copy = lst.copy() # 복제 메서드
+    # Reverse: 리스트의 반전
+    copy.reverse()
+    print("REVERSE:",copy)
+
+    copy = lst.copy()
+    print("원본: ", copy)
+
+    # 정렬: sort
+    # 메서드로서의 sort -> 내부 데이터를 실제 소트
+    # 문법으로서의 sorted -> 정렬된 새 리스트를 반환
+
+    result = sorted(copy) # copy를 정렬 -> 새 리스트로 반환
+    print("SORTED ASC: ", result)
+    result = sorted(copy, reverse=True) # 내림차순 정렬
+    print("SORTED DESC: ", result)
+    # 정렬 키 함수 정희
+    # 정렬 키 함수를 전달 -> 정렬 기준을 변경
+    print("원본: ", copy)
+    result = sorted(copy, key=str) # 키 함수를 str로 변경
+    print("SOTORTED key=str:", result)
+    #정렬 기준의 사용자 정의
+    # 리스트의 요소를 5로 나눈 나머지의 역순으로 정렬
+
+    def key_func(val):
+        return val % 5
+    result = sorted(copy, key=key_func, reverse=True)
+
+    print("SORTED key=custom, DESC", result)
+
+    # sorted 함수 -> 원본은 변경시키지 않음
+    # sort 메서드 -> 원본 내부 데이터를 변경
+    copy.sort(key=key_func, reverser=True)
+    print(copy)
+
+def stack_ex():
+    """
+    리스트를 활용한 스택의 구현
+        append, pop 메서드를 이용하여 구현
+    """
+    stack = []
+    # 입력
+    stack.append(10)
+    stack.append(20)  # 리스트의 맨 뒤에 요소 입력
+    stack.append(30)
+
+    print("STACK:",stack)
+
+    # 인출
+    print("POP:", stack.pop())
+    print("POP:", stack.pop())
+    print("POP:", stack.pop())
+    if len(stack):
+        print("POP:", stack.pop())
+    else:
+        print("스택이 비었습니다")
+def queue_ex():
+    """
+    리스트를 활용한 QUEUE의 구현
+        append, pop(0)를 활용 구현
+        First Input First Output 자료형
+    """
+
+    queue = []
+    queue.append(10)
+    queue.append(20)
+    queue.append(30)
+    print("QUEUE: ", queue)
+
+    # 인출
+    print(queue.pop(0)) # 맨 앞에서 부터 인출
+    print(queue.pop(0))
+    print(queue.pop(0))
 
 if __name__ == "__main__":
     # define_list()
-    list_oper();
+    # list_oper()
+    # list_methods()
+    # stack_ex()
+    queue_ex()
