@@ -45,5 +45,5 @@ def test_create_table(db_file):
 
 if __name__ == "__main__":
     db_file = "./database/mysqlite.db"
-    # test_connection(db_file)
+    #test_connection(db_file)
     test_create_table(db_file)
