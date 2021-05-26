@@ -37,6 +37,35 @@ def test_basic_query():
         print(row)
 
     conn.close()
+
+def test_placeholder():
+    conn = create_connection()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM employees WHERE last_name=:1 or last_name=:2"
+    cursor.execute(sql, ("King", "Grant"))
+
+    for record in cursor:
+        print(record)
+
+    conn.close()
+
+def test_dictionary():
+    conn = create_connection()
+    cursor = conn.cursor()
+    # SQL 실행
+    sql = "SELECT * FROM employees"
+    cursor.execute(sql)
+
+    print(cursor.description) # 커서의 정보 확인
+
+    # 컬럼 정보, 레코드 -> zip -> 사전
+    for record in cursor:
+        # 사전 생성
+        record_dct = dict(zip([d[0] for d in cursor.description], record))
+        print(record_dct)
+    conn.close()
 if __name__ == "__main__":
     #test_connect()
-    test_basic_query()
+    #test_basic_query()
+    # test_placeholder()
+    test_dictionary()
